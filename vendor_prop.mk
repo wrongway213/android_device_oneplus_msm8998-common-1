@@ -350,4 +350,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
 
 # Whatsapp
-vendor.camera.hal1.packagelist="com.whatsapp" 
+    vendor.camera.hal1.packagelist="com.whatsapp" 
+
+# Boot
+PRODUCT_PROPERTY_OVERRIDES += \
+    sys.vendor.shutdown.waittime=500
