@@ -640,4 +640,6 @@
 
     <!-- Enable video pause workaround when enabling/disabling the camera. -->
     <bool name="config_useVideoPauseWorkaround">true</bool>
+
+    <bool name="config_oldQtiTelephony">false</bool>
 </resources>
