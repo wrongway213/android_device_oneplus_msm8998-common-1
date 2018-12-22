@@ -142,6 +142,9 @@ on property:sys.boot_completed=1
     write /sys/module/lpm_levels/system/perf/perf-l2-ret/idle_enabled N
     write /sys/module/lpm_levels/parameters/sleep_disabled N
 
+    # SET DEFAULT GPU GOVERNOR
+    write /sys/class/devfreq/5000000.qcom,kgsl-3d0/governor "msm-adreno-tz"
+
     # Enable input boost configuration
     write /sys/module/cpu_boost/parameters/input_boost_freq "0:1036800"
     write /sys/module/cpu_boost/parameters/dynamic_stune_boost 10
@@ -163,4 +166,4 @@ on property:sys.boot_completed=1
     write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 162500
 
     # Set BFQ I/O scheduler
-    setprop sys.io.scheduler "bfq"
+    setprop sys.io.scheduler "anxiety"
