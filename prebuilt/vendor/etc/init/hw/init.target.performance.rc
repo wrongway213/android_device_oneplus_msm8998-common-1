@@ -24,16 +24,6 @@ on init
     write /sys/devices/system/cpu/cpu6/online 1
     write /sys/devices/system/cpu/cpu7/online 1
 
-    # configure governor settings for little cluster
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "schedutil"
-    write /sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us 500
-    write /sys/devices/system/cpu/cpufreq/policy0/schedutil/down_rate_limit_us 20000
-
-    # configure governor settings for big cluster
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "schedutil"
-    write /sys/devices/system/cpu/cpufreq/policy4/schedutil/up_rate_limit_us 500
-    write /sys/devices/system/cpu/cpufreq/policy4/schedutil/down_rate_limit_us 20000
-
     # Core Control
     write /sys/devices/system/cpu/cpu4/core_ctl/min_cpus 2
     write /sys/devices/system/cpu/cpu4/core_ctl/busy_up_thres 60
@@ -44,10 +34,6 @@ on init
 
     # CPU is configured, re-enable thermal core control
     write /sys/module/msm_thermal/core_control/enabled 1
-
-    # Enable input boost configuration
-    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1036800 4:1056000"
-    write /sys/module/cpu_boost/parameters/input_boost_ms 450
 
     # Setup power retention
     write /sys/module/lpm_levels/system/pwr/cpu0/ret/idle_enabled N
@@ -76,7 +62,12 @@ on init
 # For cpusets initialize for Silver Only first and then Silver + Gold
 # Silver Only configuration cannot work with 0-7
 on boot
+    write /dev/cpuset/top-app/cpus 0-3
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/background/cpus 0-3
+    write /dev/cpuset/system-background/cpus 0-3
     write /dev/cpuset/top-app/cpus 0-7
+    write /dev/cpuset/foreground/cpus 0-7
     write /dev/cpuset/background/cpus 0-7
     write /dev/cpuset/system-background/cpus 0-7
 
@@ -93,9 +84,9 @@ on charger
     # disable thermal core control
     write /sys/module/msm_thermal/core_control/enabled 0
 
-    # online cpu 0 and set governor powersave
+    # online cpu 0 and set governor helix_schedutil
     write /sys/devices/system/cpu/cpu0/online 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor helix_schedutil
 
     # offline remaining cores
     write /sys/devices/system/cpu/cpu1/online 0
@@ -150,6 +141,32 @@ on property:sys.boot_completed=1
     write /sys/devices/soc/1da4000.ufshc/clkgate_enable 1
     write /sys/devices/soc/1da4000.ufshc/hibern8_on_idle_enable 1
 
+    #Reset read ahead for dm-0 and dm-1 to 512kb
+    write /sys/block/dm-0/queue/read_ahead_kb 512
+    write /sys/block/dm-1/queue/read_ahead_kb 512
+
+    # I/O On Boot
+    write /sys/block/sda/queue/iostats 0
+    write /sys/block/sda/queue/iosched/slice_idle 0
+    write /sys/block/sda/queue/read_ahead_kb 1536
+    write /sys/block/sda/queue/nr_requests 256
+    write /sys/block/sde/queue/iostats 0
+    write /sys/block/sde/queue/iosched/slice_idle 0
+    write /sys/block/sde/queue/read_ahead_kb 1536
+    write /sys/block/sde/queue/nr_requests 256
+
+    #Set Governor and tuneables
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "schedutil"
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "schedutil"
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 230000
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 230000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1900800
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 2265600
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 500
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 12000
+    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 1000
+    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 12000
+
     # Setup cpusets
     write /dev/cpuset/top-app/cpus 0-7
     write /dev/cpuset/background/cpus 0-1
@@ -161,6 +178,57 @@ on property:sys.boot_completed=1
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
     write /sys/module/lowmemorykiller/parameters/minfree "18432,23040,27648,51256,150296,200640"
     write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 162500
+    
+    # Disable sched boost
+    write /proc/sys/kernel/sched_boost 0
 
-    # Set BFQ I/O scheduler
-    setprop sys.io.scheduler "bfq"
+    # Set moar writeback stuffs
+    write /proc/sys/vm/dirty_ratio 20
+    write /proc/sys/vm/dirty_background_ratio 10
+
+    # Treat storage as non-rotational
+    write /sys/block/sda/queue/rotational 0
+
+    write /sys/class/power_supply/usb/otg_switch 1
+
+    # Set up big.LITTLE scheduler configuration
+    write /proc/sys/kernel/sched_migration_fixup 1
+    write /proc/sys/kernel/sched_upmigrate 95
+    write /proc/sys/kernel/sched_downmigrate 90
+    write /proc/sys/kernel/sched_group_upmigrate 100
+    write /proc/sys/kernel/sched_group_downmigrate 95
+    write /proc/sys/kernel/sched_select_prev_cpu_us 0
+    write /proc/sys/kernel/sched_freq_inc_notify 400000
+    write /proc/sys/kernel/sched_freq_dec_notify 400000
+    write /proc/sys/kernel/sched_spill_nr_run 5
+    write /proc/sys/kernel/sched_restrict_cluster_spill 1
+    write /proc/sys/kernel/sched_prefer_sync_wakee_to_waker 1
+
+     # Toggle Sched Features
+	write /sys/kernel/debug/sched_features "NO_FBT_STRICT_ORDER"
+    
+on property:sys.usb.config=msc && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "msc"
+    rm /config/usb_gadget/g1/configs/b.1/f1
+    rm /config/usb_gadget/g1/configs/b.1/f2
+    rm /config/usb_gadget/g1/configs/b.1/f3
+    rm /config/usb_gadget/g1/configs/b.1/f4
+    rm /config/usb_gadget/g1/configs/b.1/f5
+    rm /config/usb_gadget/g1/configs/b.1/f6
+    write /config/usb_gadget/g1/bcdDevice 0x0404
+    write /config/usb_gadget/g1/bcdUSB 0x0200
+    write /config/usb_gadget/g1/bDeviceClass 0x00
+    write /config/usb_gadget/g1/bDeviceSubClass 0x00
+    write /config/usb_gadget/g1/bDeviceProtocol 0x00
+    write /config/usb_gadget/g1/idVendor 0x2a70 # default by factory
+    write /config/usb_gadget/g1/idProduct 0x9011 # default by factory
+    write /config/usb_gadget/g1/strings/0x409/manufacturer OnePlus
+    write /config/usb_gadget/g1/strings/0x409/product OnePlus
+    write /config/usb_gadget/g1/strings/0x409/serialnumber "11223344"
+    #write /config/usb_gadget/g1/functions/mass_storage.0/lun.0/file ""
+    write /config/usb_gadget/g1/functions/mass_storage.0/lun.0/cdrom 1 # dafault value
+    write /config/usb_gadget/g1/functions/mass_storage.0/lun.0/ro 1 # default value
+    symlink /config/usb_gadget/g1/functions/mass_storage.0 config/usb_gadget/g1/configs/b.1/f1
+    write /config/usb_gadget/g1/UDC ${sys.usb.controller}
+    setprop sys.usb.state ${sys.usb.config}
+
