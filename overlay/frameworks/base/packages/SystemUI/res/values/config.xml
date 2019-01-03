@@ -39,6 +39,5 @@
 
     <!-- Allow devices override audio panel location to the left side -->
     <bool name="config_audioPanelOnLeftSide">true</bool>
->>>>>>> 2e24001... msm8998: Move audio panel on the left
 </resources>
 
