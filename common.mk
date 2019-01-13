@@ -439,6 +439,15 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-service \
     libsensorndkbridge
 
+# Spectrum Support
+PRODUCT_PACKAGES += \
+    init.spectrum.rc \
+    init.spectrum.sh
+
+# Spectrum Support
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.spectrum.profile=0
+
 # Tetheroffload
 PRODUCT_PACKAGES += \
     ipacm \

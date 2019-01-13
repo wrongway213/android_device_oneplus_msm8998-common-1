@@ -91,3 +91,6 @@ ro.qualcomm.               u:object_r:vendor_default_prop:s0
 sdm.                       u:object_r:vendor_default_prop:s0
 ubwc.no.compression        u:object_r:vendor_default_prop:s0
 vidc.enc.dcvs.extra-buff-count  u:object_r:vendor_default_prop:s0
+
+# Spectrum
+persist.spectrum.profile               u:object_r:spectrum_prop:s0
