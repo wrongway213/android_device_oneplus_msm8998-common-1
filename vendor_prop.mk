@@ -140,7 +140,7 @@ vendor.display.foss.config_path=/vendor/etc/FOSSConfig.xml
 # 0 = disable
 # 9 = enable FD , TCM , disable CT , NSRM
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.dpm.feature=11
+    persist.vendor.dpm.feature=9
 
 # DRM
 PRODUCT_PROPERTY_OVERRIDES += \
