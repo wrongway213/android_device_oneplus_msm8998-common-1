@@ -63,6 +63,7 @@ TARGET_2ND_CPU_VARIANT := cortex-a73
 
 TARGET_USES_UEFI := true
 TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
+BOARD_SUPPRESS_SECURE_ERASE := true
 
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 
