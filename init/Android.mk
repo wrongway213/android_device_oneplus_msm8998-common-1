@@ -25,6 +25,8 @@ LOCAL_C_INCLUDES := \
 
 LOCAL_STATIC_LIBRARIES := libbase
 
+LOCAL_CPPFLAGS := -Wall -DANDROID_TARGET=\"msm8998\"
+
 LOCAL_SRC_FILES := init_oneplus_msm8998.cpp
 
 LOCAL_MODULE := libinit_oneplus_msm8998

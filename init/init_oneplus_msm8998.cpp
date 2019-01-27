@@ -72,6 +72,13 @@ void property_override(const std::string& name, const std::string& value)
     }
 }
 
+void property_override_dual(char const system_prop[], char const vendor_prop[],
+    char const value[])
+{
+    property_override(system_prop, value);
+    property_override(vendor_prop, value);
+}
+
 void init_target_properties()
 {
     std::string device;
@@ -190,4 +197,23 @@ void vendor_load_properties() {
     init_target_properties();
     init_fingerprint_properties();
     init_alarm_boot_properties();
+
+    std::string device;
+    std::string platform = GetProperty("ro.board.platform", "");
+
+    if (platform != ANDROID_TARGET)
+        return;
+
+    // fingerprint
+    if (ReadFileToString(DEVINFO_FILE, &device)) {
+        if (!strncmp(device.c_str(), "16859", 5)) {
+            // Oneplus 5
+            property_override("ro.build.description", "OnePlus5-user 9 PKQ1.180716.001 1901182129 release-keys");
+        }
+        else if (!strncmp(device.c_str(), "17801", 5)) {
+            // Oneplus 5T
+            property_override("ro.build.description", "OnePlus5T-user 9 PKQ1.180716.001 1901182129 release-keys");
+        }
+    }
+    property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys");
 }
