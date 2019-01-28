@@ -112,6 +112,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.netmgrd.qos.enable=true \
     persist.data.mode=concurrent
 
+# Display power reduction (FOSS)
+ro.vendor.display.sensortype=3
+ro.vendor.display.paneltype=1
+ro.vendor.display.foss=1
+vendor.display.foss.config=1
+vendor.display.foss.config_path=/vendor/etc/FOSSConfig.xml
+
 # DPM
 # 0 = disable
 # 9 = enable FD , TCM , disable CT , NSRM
