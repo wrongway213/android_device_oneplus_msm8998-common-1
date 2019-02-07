@@ -665,4 +665,7 @@
     <!-- Whether to enable OP5/T cam hack -->
     <bool name="config_enableOPcamhack">true</bool>
 
+    <!-- Enable all rotations -->
+    <bool name="config_allowAllRotations">true</bool>
+
 </resources>
