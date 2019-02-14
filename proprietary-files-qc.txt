@@ -233,6 +233,7 @@ vendor/lib/libSTDualCamCaptureBokeh.so
 vendor/lib/libSTDualCamPreviewBokeh.so
 vendor/lib/libSTdisp.so
 vendor/lib/libUBWC.so
+vendor/lib/libvideoutils.so
 vendor/lib/libVDDualCameraBlurlessAPI.so
 vendor/lib/vendor.qti.hardware.camera.device@1.0.so
 vendor/lib64/libcdsprpc.so
@@ -259,6 +260,7 @@ vendor/lib64/libscveObjectTracker_stub.so
 vendor/lib64/libscveObjectSegmentation.so
 vendor/lib64/libscveObjectSegmentation_stub.so
 vendor/lib64/libUBWC.so
+vendor/lib64/libvideoutils.so
 vendor/lib64/vendor.qti.hardware.camera.device@1.0.so
 
 # Camera actuators
@@ -706,6 +708,7 @@ vendor/lib64/libizat_client_api.so
 vendor/lib64/libizat_core.so
 vendor/lib64/liblbs_core.so
 vendor/lib64/libloc_externalDr.so
+vendor/lib64/libloc_externalDrcore.so
 vendor/lib64/liblocationservice_glue.so
 vendor/lib64/liblocationservice.so
 vendor/lib64/liblowi_client.so
@@ -837,6 +840,7 @@ lib64/libmmosal.so
 lib64/vendor.qti.hardware.vpp@1.1.so
 -vendor/lib/libgpustats.so
 vendor/lib/libOmxVpp.so
+vendor/lib/libmm-omxcore.so
 vendor/lib/libvpplibrary.so
 vendor/lib/libI420colorconvert.so
 vendor/lib/libmm-color-convertor.so
@@ -862,6 +866,7 @@ vendor/lib/vendor.qti.hardware.vpp@1.1.so
 vendor/lib64/libAlacSwDec.so
 vendor/lib64/libApeSwDec.so
 vendor/lib64/libOmxVpp.so
+vendor/lib64/libmm-omxcore.so
 vendor/lib64/libvpplibrary.so
 vendor/lib64/libI420colorconvert.so
 vendor/lib64/libmm-color-convertor.so
