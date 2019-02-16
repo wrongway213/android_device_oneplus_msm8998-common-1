@@ -42,7 +42,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.audio.hac.enable=false \
     persist.vendor.audio.ras.enabled=false \
     persist.vendor.btstack.a2dp_offload_cap=sbc-aptx-aptxhd-ldac-aac \
-    ro.config.media_vol_steps=25 \
+    ro.config.media_vol_steps=15 \
     ro.config.vc_call_vol_steps=7 \
     ro.vendor.audio.sdk.fluencetype=fluencepro \
     ro.vendor.audio.sdk.ssr=false \
@@ -65,7 +65,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.fm.a2dp.conc.disabled=true \
     vendor.voice.path.for.pcm.voip=true \
     vendor.audio.noisy.broadcast.delay=600 \
-    ro.config.media_vol_steps=25 \
     ro.af.client_heap_size_kbyte=7168
 
 # Battery

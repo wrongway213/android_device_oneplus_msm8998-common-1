@@ -249,10 +249,6 @@ TARGET_PROVIDES_KEYMASTER := true
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
-# Lineage Hardware
-BOARD_HARDWARE_CLASS += $(PLATFORM_PATH)/lineagehw
-JAVA_SOURCE_OVERLAYS := org.lineageos.hardware|$(PLATFORM_PATH)/lineagehw|**/*.java
-
 # NFC
 BOARD_NFC_CHIPSET := pn553
 TARGET_USES_NQ_NFC := true
@@ -330,9 +326,6 @@ WIFI_DRIVER_OPERSTATE_PATH := "/sys/class/net/wlan0/operstate"
 WIFI_DRIVER_STATE_CTRL_PARAM := "/sys/kernel/boot_wlan/boot_wlan"
 WIFI_DRIVER_STATE_OFF := 0
 WIFI_DRIVER_STATE_ON := 1
-
-# Root
-DEFAULT_ROOT_METHOD := magisk
 
 # inherit from the proprietary version
 -include vendor/oneplus/msm8998-common/BoardConfigVendor.mk
