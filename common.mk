@@ -371,12 +371,7 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libstagefrighthw
 
-# Prebuilt
-PRODUCT_PACKAGES += \
-    OnePlusCamera \
-    OnePlusGallery \
-    OnePlusCameraService
-
+# OP Camera
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/common/addon.d/51-oneplus-camera.sh:system/addon.d/51-oneplus-camera.sh  \
     $(LOCAL_PATH)/prebuilt/common/lib/libopcameralib-em.so:system/lib/libopcameralib-em.so  \
