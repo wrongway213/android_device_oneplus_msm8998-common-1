@@ -204,13 +204,13 @@ PRODUCT_PACKAGES += \
 
 # Keyhandler
 PRODUCT_PACKAGES += \
-    ConfigPanel \
-    com.cyanogenmod.keyhandler
+    OPSettings \
+    com.oneplus.keyhandler
 
-PRODUCT_SYSTEM_SERVER_JARS += com.cyanogenmod.keyhandler
+PRODUCT_SYSTEM_SERVER_JARS += com.oneplus.keyhandler
 
 # never dexopt the keyhandler
-$(call add-product-dex-preopt-module-config,com.cyanogenmod.keyhandler,disable)
+$(call add-product-dex-preopt-module-config,com.oneplus.keyhandler,disable)
 
 # DRM
 PRODUCT_PACKAGES += \
