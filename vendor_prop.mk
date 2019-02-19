@@ -348,3 +348,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Wi-Fi
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
+
+# Whatsapp
+vendor.camera.hal1.packagelist="com.whatsapp" 
