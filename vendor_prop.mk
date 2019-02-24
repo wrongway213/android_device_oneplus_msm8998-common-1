@@ -248,6 +248,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.always_send_plmn=true \
     persist.radio.apm_sim_not_pwdn=1 \
     persist.radio.calls.on.ims=1 \
+    vendor.service.qti.ims.enabled=1 \
     persist.radio.custom_ecc=1 \
     persist.radio.data_con_rprt=1 \
     persist.radio.data_ltd_sys_ind=1 \
