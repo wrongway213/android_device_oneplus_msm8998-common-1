@@ -99,6 +99,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.cne.feature=1
 
+# Connor
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.vendor.connor.disable=1
+
 # Core control
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.qti.core_ctl_min_cpu=2 \
@@ -106,9 +110,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Data
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.use_data_netmgrd=true \
     persist.data.netmgrd.qos.enable=true \
-    persist.data.mode=concurrent
+    persist.vendor.data.mode=concurrent \
+    ro.vendor.use_data_netmgrd=true
 
 # Display power reduction (FOSS)
 ro.vendor.display.sensortype=3
@@ -209,7 +213,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dataroaming=true \
     persist.sys.oem_smooth=1 \
     persist.radio.VT_CAM_INTERFACE=1 \
-    persist.radio.apm_sim_not_pwdn=1 \
     persist.radio.multisim.config=dsds \
     persist.radio.enhance_ecall=true \
     persist.radio.hw_mbn_update=0 \
@@ -217,6 +220,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.start_ota_daemon=0 \
     persist.vendor.ims.dropset_feature=0 \
     persist.vendor.radio.add_power_save=1 \
+    persist.vendor.radio.apm_sim_not_pwdn=1 \
     persist.vendor.radio.custom_ecc=1 \
     persist.vendor.radio.data_con_rprt=1 \
     persist.vendor.radio.data_ltd_sys_ind=1 \
