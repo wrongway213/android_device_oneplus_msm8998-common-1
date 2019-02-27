@@ -50,13 +50,13 @@ on property:sys.post_boot.parsed=1
 
 on property:sys.boot_completed=1
     # Disable boot time fs tuning
-    write /sys/block/sda/queue/read_ahead_kb 1536
+    write /sys/block/sda/queue/read_ahead_kb 1024
     write /sys/block/sda/queue/nr_requests 128
     write /sys/block/sda/queue/iostats 0
-    write /sys/block/sdf/queue/read_ahead_kb 1536
+    write /sys/block/sdf/queue/read_ahead_kb 1024
     write /sys/block/sdf/queue/nr_requests 128
     write /sys/block/sdf/queue/iostats 0
-    write /sys/block/sde/queue/read_ahead_kb 1536
+    write /sys/block/sde/queue/read_ahead_kb 1024
     write /sys/block/sde/queue/nr_requests 128
     write /sys/block/sde/queue/iostats 0
 
@@ -89,16 +89,16 @@ on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 300000
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 300000
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 190080
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 2496000
-    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 1000
-    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 20000
-    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 1000
-    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 20000
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 2208000
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 500
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 15000
+    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 500
+    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 15000
     write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/iowait_boost_enable 1
     write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/iowait_boost_enable 1
 
     # Enable Touchboost 
-    write /sys/module/msm_performance/parameters/touchboost 1
+    write /sys/module/msm_performance/parameters/touchboost 0
 
     # Core Control
     write /sys/devices/system/cpu/cpu4/core_ctl/min_cpus 2
@@ -137,10 +137,14 @@ on property:sys.boot_completed=1
     start vendor.qcom-power
 
     # Enable Adaptive LMK
-    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
+    write /sys/module/lowmemorykiller/parameters/minfree "18432,23040,27648,32256,55296,80640"
+    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
 
     # Set anxiety I/O scheduler
-    setprop sys.io.scheduler "maple"
+    setprop sys.io.scheduler "bfq"
+
+    # Enable PowerHAL hint processing
+    setprop vendor.powerhal.init 1
 
     # adb over network
     on property:service.adb.tcp.port=5555
