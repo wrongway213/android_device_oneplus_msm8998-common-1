@@ -214,7 +214,7 @@ TARGET_ENABLE_MEDIADRM_64 := true
 
 # Enable dexpreopt to speed boot time
 ifeq ($(HOST_OS),linux)
-  ifneq ($(TARGET_BUILD_VARIANT),eng)
+  ifneq ($(TARGET_BUILD_VARIANT),usr)
       WITH_DEXPREOPT := true
       WITH_DEXPREOPT_DEBUG_INFO := false
       USE_DEX2OAT_DEBUG := false
