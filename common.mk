@@ -202,16 +202,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     OneplusDoze
 
-# Keyhandler
-PRODUCT_PACKAGES += \
-    OPSettings \
-    com.oneplus.keyhandler
-
-PRODUCT_SYSTEM_SERVER_JARS += com.oneplus.keyhandler
-
-# never dexopt the keyhandler
-$(call add-product-dex-preopt-module-config,com.oneplus.keyhandler,disable)
-
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
@@ -520,3 +510,6 @@ PRODUCT_COPY_FILES += \
 # Wi-Fi Display
 PRODUCT_BOOT_JARS += \
     WfdCommon
+
+# Inherit from oneplus-settings
+$(call inherit-product, device/oneplus/settings/common.mk)
