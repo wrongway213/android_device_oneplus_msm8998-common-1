@@ -637,6 +637,9 @@
     <!-- Allow automatic adjusting of the screen brightness while dozing in low power state. -->
     <bool name="config_allowAutoBrightnessWhileDozing">true</bool>
 
+    <!-- AOD enabled while charging only on by default -->
+    <bool name="config_doze_on_charge">true</bool>
+
     <!-- Override the default detection behavior for the framework method
          android.view.ViewConfiguration#hasPermanentMenuKey().
          Valid settings are:
