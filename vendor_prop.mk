@@ -120,7 +120,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Core control
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.qti.core_ctl_min_cpu=2 \
+    ro.vendor.qti.core_ctl_min_cpu=1 \
     ro.vendor.qti.core_ctl_max_cpu=4
 
 # Data
