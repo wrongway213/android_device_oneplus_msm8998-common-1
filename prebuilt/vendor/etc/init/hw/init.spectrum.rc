@@ -17,10 +17,10 @@ on property:persist.spectrum.profile=0
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 300000
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 300000
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1900800
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 2208000
-	write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 200
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 2496000
+	write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 500
 	write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 20000
-	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 200
+	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 500
 	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 20000
     write /sys/module/msm_performance/parameters/touchboost 1
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
@@ -39,7 +39,7 @@ on property:persist.spectrum.profile=1
 	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 100
 	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 20000
     write /sys/module/msm_performance/parameters/touchboost 0
-    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
+    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
     write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 2
 
 # Battery
@@ -50,10 +50,10 @@ on property:persist.spectrum.profile=2
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 300000
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1900800
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 1958400
-	write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 1000
-	write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 14000
-	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 1000
-	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 14000
+	write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 500
+	write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 15000
+	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 500
+	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 15000
     write /sys/module/msm_performance/parameters/touchboost 0
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
 
