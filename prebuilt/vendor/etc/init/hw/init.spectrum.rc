@@ -22,9 +22,19 @@ on property:persist.spectrum.profile=0
 	write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 20000
 	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 500
 	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 20000
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/iowait_boost_enable 1
+    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/iowait_boost_enable 1
     write /sys/module/msm_performance/parameters/touchboost 1
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
     write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 0
+    write /sys/block/sda/queue/read_ahead_kb 1536
+    write /sys/block/sda/queue/nr_requests 128
+    write /sys/block/sda/queue/iostats 0
+    write /sys/block/sdf/queue/read_ahead_kb 1536
+    write /sys/block/sdf/queue/nr_requests 128
+    write /sys/block/sdf/queue/iostats 0
+    write /sys/block/sde/queue/read_ahead_kb 1536
+    write /sys/block/sde/queue/nr_requests 128
 
 # Performance
 on property:persist.spectrum.profile=1
@@ -38,9 +48,19 @@ on property:persist.spectrum.profile=1
 	write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 20000
 	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 100
 	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 20000
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/iowait_boost_enable 1
+    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/iowait_boost_enable 1
     write /sys/module/msm_performance/parameters/touchboost 0
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
     write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 2
+    write /sys/block/sda/queue/read_ahead_kb 2048
+    write /sys/block/sda/queue/nr_requests 256
+    write /sys/block/sda/queue/iostats 0
+    write /sys/block/sdf/queue/read_ahead_kb 2048
+    write /sys/block/sdf/queue/nr_requests 256
+    write /sys/block/sdf/queue/iostats 0
+    write /sys/block/sde/queue/read_ahead_kb 2048
+    write /sys/block/sde/queue/nr_requests 256
 
 # Battery
 on property:persist.spectrum.profile=2
@@ -54,8 +74,18 @@ on property:persist.spectrum.profile=2
 	write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 15000
 	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 500
 	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 15000
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/iowait_boost_enable 0
+    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/iowait_boost_enable 0
     write /sys/module/msm_performance/parameters/touchboost 0
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
+    write /sys/block/sda/queue/read_ahead_kb 1024
+    write /sys/block/sda/queue/nr_requests 128
+    write /sys/block/sda/queue/iostats 0
+    write /sys/block/sdf/queue/read_ahead_kb 1024
+    write /sys/block/sdf/queue/nr_requests 128
+    write /sys/block/sdf/queue/iostats 0
+    write /sys/block/sde/queue/read_ahead_kb 1024
+    write /sys/block/sde/queue/nr_requests 128
 
 # Gaming
 on property:persist.spectrum.profile=3
@@ -69,6 +99,16 @@ on property:persist.spectrum.profile=3
 	write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 20000
 	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 100
 	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 20000
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/iowait_boost_enable 1
+    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/iowait_boost_enable 1
     write /sys/module/msm_performance/parameters/touchboost 1
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
     write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 3
+    write /sys/block/sda/queue/read_ahead_kb 2048
+    write /sys/block/sda/queue/nr_requests 256
+    write /sys/block/sda/queue/iostats 0
+    write /sys/block/sdf/queue/read_ahead_kb 2048
+    write /sys/block/sdf/queue/nr_requests 256
+    write /sys/block/sdf/queue/iostats 0
+    write /sys/block/sde/queue/read_ahead_kb 2048
+    write /sys/block/sde/queue/nr_requests 256
