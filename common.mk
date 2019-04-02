@@ -291,6 +291,16 @@ PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl \
     android.hardware.keymaster@3.0-service
 
+# Keyhandler
+PRODUCT_PACKAGES += \
+    OPSettings \
+    com.oneplus.keyhandler
+
+PRODUCT_SYSTEM_SERVER_JARS += com.oneplus.keyhandler
+
+# never dexopt the keyhandler
+$(call add-product-dex-preopt-module-config,com.oneplus.keyhandler,disable)
+
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.oneplus_8998
@@ -520,6 +530,3 @@ PRODUCT_COPY_FILES += \
 # Wi-Fi Display
 PRODUCT_BOOT_JARS += \
     WfdCommon
-
-# Inherit from oppo-common
-$(call inherit-product, device/oppo/common/common.mk)
