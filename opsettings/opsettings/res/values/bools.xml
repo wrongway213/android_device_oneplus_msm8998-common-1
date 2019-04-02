@@ -17,6 +17,6 @@
 <resources>
 
     <!-- Whether to display spectrum settings -->
-    <bool name="device_supports_spectrum">false</bool>
+    <bool name="device_supports_spectrum">true</bool>
 
 </resources>
