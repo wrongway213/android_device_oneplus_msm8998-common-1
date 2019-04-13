@@ -103,8 +103,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.camera.aux.packagelist=com.oneplus.camera,com.android.camera,com.google.android.GoogleCamera \
-    camera.hal1.packagelist=com.whatsapp,com.android.camera,com.android.camera2,com.instagram.android \
-    vendor.camera.hal1.packagelist=com.whatsapp,com.android.camera,com.android.camera2,com.instagram.android \
     persist.camera.mobicat=2 \
     persist.camera.stats.debugexif=3080192 \
     persist.ts.rtmakeup=false \
@@ -348,6 +346,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.service.debuggable=1 \
     persist.sys.usb.config=mtp,adb \
     ro.adb.secure=0
+
+# HAL1 Packages
+camera.hal1.packagelist=com.skype.raider,com.google.android.talk,com.whatsapp
 
 # VoLTE/VoWifi options
 PRODUCT_PROPERTY_OVERRIDES += \
