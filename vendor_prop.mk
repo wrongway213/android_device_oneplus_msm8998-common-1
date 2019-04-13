@@ -172,7 +172,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.display.disable_skip_validate=1 \
     vendor.display.perf_hint_window=50 \
     vendor.display.enable_default_color_mode=0 \
-    vendor.video.disable.ubwc=1
+    debug.hwui.use_buffer_age=false
 
 # IZat OptInApp overlay enable
 PRODUCT_PROPERTY_OVERRIDES += \
